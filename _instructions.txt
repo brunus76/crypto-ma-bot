@@ -59,6 +59,12 @@ open app/backtest/results/full_report.html
 
 PRs welcome! See CONTRIBUTING.md.
 
+
+cli.py
+python cli.py backtest BTC-USD
+python cli.py report
+python cli.py deploy
+
 ---
 
 ### ✅ TO DO NEXT
