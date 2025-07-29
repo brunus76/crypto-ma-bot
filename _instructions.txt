@@ -31,5 +31,46 @@ bq mk --table crypto_bot.trades \
   trade_time:TIMESTAMP,product:STRING,price:FLOAT,signal:STRING
 
 
+🔐 Google Secret Manager
+bash
+echo -n "API_KEY" | gcloud secrets create coinbase-api-key --data-file=-
+# Repeat for secret + passphrase
+
+🚀 Run on GCP
+bash
+gcloud builds submit --tag gcr.io/YOUR_PROJECT_ID/crypto-ma-bot
+gcloud run deploy crypto-ma-bot --image gcr.io/YOUR_PROJECT_ID/crypto-ma-bot --platform managed
+
+📊 Run Backtests
+bash
+python app/backtest/run_all_backtests.py
+
+📄 Generate Report
+bash
+open app/backtest/results/full_report.html
+
+📉 Connect to Looker Studio
+	•	Source: crypto_bot.trades table (in BigQuery)
+	•	Build charts by product, signal, price, etc.
+
+⸻
+
+📬 Contributions
+
+PRs welcome! See CONTRIBUTING.md.
+
+---
+
+### ✅ TO DO NEXT
+
+- [ ] Create the repo: `crypto-ma-bot` (or I can give you a zipped folder to push)
+- [ ] Add your actual API keys via Google Secret Manager
+- [ ] Enable BigQuery + Scheduler + Run APIs
+- [ ] Deploy via `gcloud` CLI or GitHub Actions
+
+---
+
+**a.** Want a zipped project folder ready to push to GitHub?  
+**b.** Want to add a CLI command interface (`argparse`) or Streamlit UI for one-click run and charts?
 
 
