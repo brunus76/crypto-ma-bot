@@ -1,5 +1,6 @@
 pandas
 requests
-matplotlib
 google-cloud-secret-manager
 google-cloud-bigquery
+matplotlib
+

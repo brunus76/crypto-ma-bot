@@ -1,0 +1,35 @@
+DEPLOY TO CLOUD RUN
+
+gcloud builds submit --tag gcr.io/YOUR_PROJECT_ID/crypto-bot
+gcloud run deploy crypto-bot \
+  --image gcr.io/YOUR_PROJECT_ID/crypto-bot \
+  --platform managed \
+  --region us-central1 \
+  --allow-unauthenticated
+
+
+OPTIONAL: Add Scheduler
+
+gcloud scheduler jobs create http crypto-job \
+  --schedule "*/5 * * * *" \
+  --uri https://YOUR_CLOUD_RUN_URL \
+  --http-method GET
+
+
+BIGQUERY EXAMPLE
+SELECT signal, COUNT(*) FROM trades GROUP BY signal;
+SELECT AVG(price) FROM trades WHERE signal = 'BUY';
+
+
+BigQuery Setup
+
+# Create dataset
+bq mk crypto_bot
+
+# Create table
+bq mk --table crypto_bot.trades \
+  trade_time:TIMESTAMP,product:STRING,price:FLOAT,signal:STRING
+
+
+
+
