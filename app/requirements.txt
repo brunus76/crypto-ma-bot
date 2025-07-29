@@ -1,0 +1,6 @@
+pandas
+requests
+google-cloud-secret-manager
+google-cloud-bigquery
+matplotlib
+
